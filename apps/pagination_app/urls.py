@@ -5,5 +5,6 @@ urlpatterns = [
     path('', views.index),
     path('add', views.add),
     path('create', views.create),
-    path('find', views.find)
+    path('find', views.find),
+    path('date', views.date)
 ]

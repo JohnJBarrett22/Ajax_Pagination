@@ -39,7 +39,7 @@
                     <td>{{user.id}}</td>
                     <td>{{user.first_name}}</td>
                     <td>{{user.last_name}}</td>
-                    <td>{{user.created_at}}</td>
+                    <td>{{user.created_at|date:'Y-m-d'}}</td>
                     <td>{{user.email_address}}</td>
                 </tr>
                 {% endfor %}
@@ -51,6 +51,28 @@
         $('#ajax_lead_name').keyup(function () {
             $.ajax({
                 url: '/find',
+                method: 'post',
+                data: $(this).parent().serialize(),
+                success: function (serverResponse) {
+                    console.log('Success!', serverResponse)
+                    $('#results').html(serverResponse)
+                }
+            })
+        });
+        $('#ajax_from_date').keyup(function () {
+            $.ajax({
+                url: '/date',
+                method: 'post',
+                data: $(this).parent().serialize(),
+                success: function (serverResponse) {
+                    console.log('Success!', serverResponse)
+                    $('#results').html(serverResponse)
+                }
+            })
+        });
+        $('#ajax_to_date').keyup(function () {
+            $.ajax({
+                url: '/date',
                 method: 'post',
                 data: $(this).parent().serialize(),
                 success: function (serverResponse) {

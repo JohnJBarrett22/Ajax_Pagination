@@ -19,15 +19,15 @@ def find(request):
 
 def date(request):
     if len(request.POST['from_date']) < 1:
-        from_date = '0000-01-01'
+        from_date = '1900-01-01'
     else:
         from_date = request.POST['from_date']
 
     if len(request.POST['to_date']) < 1:
-        from_date = '9999-12-31'
+        to_date = '9999-12-31'
     else:
-        from_date = request.POST['to_date']
+        to_date = request.POST['to_date']
 
-    users = User.objects.filter(date__range=[from_date, to_date])
+    users = User.objects.filter(created_at__range=[from_date, to_date])
     print(users)
     return render(request, "pagination_app/table.html", {"users": users})
