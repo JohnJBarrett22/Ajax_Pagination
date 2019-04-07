@@ -17,32 +17,49 @@
 <body>
     <form id="create_user_ajax_form" class="ajax_form" action='/demo_app/create' method="post">
         {% csrf_token %}
-        Lead Name: <input type="text" name="lead_name">
-        From Date: <input type="date" name="from_date">
-        To Date: <input type="date" name="to_date">
+        Lead Name: <input id="ajax_lead_name" type="text" name="lead_name">
+        From Date: <input id="ajax_from_date" type="date" name="from_date">
+        To Date: <input id="ajax_to_date" type="date" name="to_date">
     </form>
 
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Lead ID</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Registered Date</th>
-                <th scope="col">Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
+    <div id="results">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Lead ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Registered Date</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.last_name}}</td>
+                    <td>{{user.created_at}}</td>
+                    <td>{{user.email_address}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-        </tbody>
-    </table>
+    <script>
+        $('#ajax_lead_name').keyup(function () {
+            $.ajax({
+                url: '/find',
+                method: 'post',
+                data: $(this).parent().serialize(),
+                success: function (serverResponse) {
+                    console.log('Success!', serverResponse)
+                    $('#results').html(serverResponse)
+                }
+            })
+        });
+    </script>
 
 </body>
 

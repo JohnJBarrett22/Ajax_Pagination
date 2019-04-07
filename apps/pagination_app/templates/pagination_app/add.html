@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <form action="/pagination_app/create" method="post">
+    <form action="/create" method="post">
+        {% csrf_token %}
         First Name: <input type="text" name="first_name">
         Last Name: <input type="text" name="last_name">
         Email Address: <input type="text" name="email_address">
