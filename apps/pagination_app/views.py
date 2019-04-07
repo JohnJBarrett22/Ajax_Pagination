@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.core.paginator import Paginator
 from . models import *
 
 def index(request):
     users = User.objects.all()
+    paginator = Paginator(users, 5)
+    page = request.GET.get('page')
+    users = paginator.get_page(page)
     return render(request, "pagination_app/index.html", {"users": users})
 
 def add(request):

@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+}
+form {
+    margin: 0 auto;
+}
+#form {
+    font-weight: bold;
+    margin: 3rem auto;
+}
+#pagination {
+    display: block;
+    margin: 0 auto;
+}
