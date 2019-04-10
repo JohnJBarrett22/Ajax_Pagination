@@ -18,6 +18,9 @@ def create(request):
 
 def find(request):
     users = User.objects.filter(first_name__startswith=request.POST['lead_name'])|User.objects.filter(last_name__startswith=request.POST['lead_name'])
+    paginator = Paginator(users, 5)
+    page = request.GET.get('page')
+    users = paginator.get_page(page)
     print(users)
     return render(request, "pagination_app/table.html", {"users": users})
 

@@ -84,6 +84,8 @@
                 }
             })
         });
+
+        //Update based on keyboard controls for the date fields
         $('#ajax_from_date').keyup(function () {
             $.ajax({
                 url: '/date',
@@ -106,6 +108,8 @@
                 }
             })
         });
+
+        //Update based on mouse controls for the date fields
         $('#ajax_from_date').change(function () {
             $.ajax({
                 url: '/date',
