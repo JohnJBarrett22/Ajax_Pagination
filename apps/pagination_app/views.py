@@ -21,7 +21,6 @@ def find(request):
     paginator = Paginator(users, 5)
     page = request.GET.get('page')
     users = paginator.get_page(page)
-    print(users)
     return render(request, "pagination_app/table.html", {"users": users})
 
 def date(request):
@@ -35,7 +34,8 @@ def date(request):
     else:
         to_date = request.POST['to_date']
 
-    print(from_date, to_date)
     users = User.objects.filter(created_at__range=[from_date + ' 00:00:00.000000', to_date + ' 23:59:59.999999'])
-    print(users)
+    paginator = Paginator(users, 5)
+    page = request.GET.get('page')
+    users = paginator.get_page(page)
     return render(request, "pagination_app/table.html", {"users": users})

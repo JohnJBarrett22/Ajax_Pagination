@@ -26,7 +26,7 @@
             </form>
         </div>
 
-        <div id="content">
+        <div id="results">
             <div id="pagination" class="row">
                 <nav aria-label="...">
                     <ul class="pagination pagination-sm">
@@ -46,7 +46,7 @@
                 </nav>
             </div>
 
-            <div id="results" class="row">
+            <div id="dataTable" class="row">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -83,7 +83,7 @@
                 data: $(this).parent().serialize(),
                 success: function (serverResponse) {
                     console.log('Success!', serverResponse)
-                    $('#content').html(serverResponse)
+                    $('#results').html(serverResponse)
                 }
             })
         });
